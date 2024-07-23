@@ -25,11 +25,11 @@ net = VicsGaze(backbone)
 model = nn.Sequential()
 model.add_module('backbone', net.backbone)
 
-statedict = torch.load("/root/autodl-tmp/byol/weights/Iter_40_trans6_eth_ssl.pt")
-# statedict = torch.load("/root/autodl-tmp/byol/result/eth/checkpoint/Iter_5_trans6.pt")
-# statedict = torch.load("/root/autodl-tmp/byol/result/mpii/checkpoint/p14.label/Iter_80_finetune.pt")
-# statedict = torch.load("/root/autodl-tmp/byol/result/gaze360/checkpoint/Iter_80_finetune.pt")
-# statedict = torch.load("/root/autodl-tmp/byol/result/columbia/checkpoint/train1.label/Iter_80_finetune.pt")
+statedict = torch.load("/root/autodl-tmp/vicsgaze/weights/Iter_40_trans6_eth_ssl.pt")
+# statedict = torch.load("/root/autodl-tmp/vicsgaze/result/eth/checkpoint/Iter_5_trans6.pt")
+# statedict = torch.load("/root/autodl-tmp/vicsgaze/result/mpii/checkpoint/p14.label/Iter_80_finetune.pt")
+# statedict = torch.load("/root/autodl-tmp/vicsgaze/result/gaze360/checkpoint/Iter_80_finetune.pt")
+# statedict = torch.load("/root/autodl-tmp/vicsgaze/result/columbia/checkpoint/train1.label/Iter_80_finetune.pt")
 
 
 backbone_dict = {k: v for k, v in statedict.items() if 'backbone' in k}
