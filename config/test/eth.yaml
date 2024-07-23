@@ -1,0 +1,48 @@
+---
+test:
+    params:
+        batch_size: 256
+        epoch: 5
+        lr: 0.0005
+        decay: 0.5
+        decay_step: 55
+        warmup: 0
+
+    params_linear:
+        batch_size: 512
+        epoch: 50
+        lr: 0.0005
+        decay: 0.5
+        decay_step: 10
+        warmup: 3
+
+    save_linear:
+        metapath: "result"
+        folder: eth
+        model_name: linear
+        step: 5
+
+    train_data:      
+        image: "/root/autodl-tmp/eth/Image/Train"
+        label: "/root/autodl-tmp/eth/Label/Train.label"
+        name: eth
+        header: True
+        isFolder: False
+
+    load:
+        begin_step: 10
+        end_step: 80
+        steps: 10
+
+    data: 
+        image: "/root/autodl-tmp/eth/Image/test"
+        label: "/root/autodl-tmp/eth/Label/test.label"
+        name: eth
+        header: True
+        isFolder: False
+
+    savename: "evaluation"
+
+    device: 0
+
+    reader: reader
