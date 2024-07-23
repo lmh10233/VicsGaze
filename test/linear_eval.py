@@ -34,7 +34,7 @@ def seed_torch(seed):
 
     
 def main(train, test):
-    seed_torch()
+    # seed_torch()
     
     fine_tune = True
     total_training_time = 0  # 初始化总训练时间
