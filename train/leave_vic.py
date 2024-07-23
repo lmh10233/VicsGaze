@@ -24,7 +24,7 @@ from scheduler import cosine_schedule
 from easydict import EasyDict as edict
 import online_resnet
 
-def seed_torch(seed=3407):  # 114514, 3407
+def seed_torch(seed):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed) # 为了禁止hash随机化，使得实验可复现
     np.random.seed(seed)
@@ -36,7 +36,7 @@ def seed_torch(seed=3407):  # 114514, 3407
 
 
 def main(config):
-    seed_torch()
+    # seed_torch()
     # resnet = torchvision.models.resnet18()
     resnet = online_resnet.create_Res()
     backbone = nn.Sequential(*list(resnet.children())[:-1])
