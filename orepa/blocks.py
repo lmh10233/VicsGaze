@@ -149,20 +149,9 @@ class DBB(nn.Module):
 
 class OREPA(nn.Module):
 
-    def __init__(self,
-                 in_channels,
-                 out_channels,
-                 kernel_size,
-                 stride=1,
-                 padding=0,
-                 dilation=1,
-                 groups=1,
-                 internal_channels_1x1_3x3=None,
-                 deploy=False,
-                 nonlinear=None,
-                 single_init=False,
-                 weight_only=False,
-                 init_hyper_para=1.0, init_hyper_gamma=1.0):
+    def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1,
+                 groups=1, internal_channels_1x1_3x3=None, deploy=False, nonlinear=None, single_init=False,
+                 weight_only=False, init_hyper_para=1.0, init_hyper_gamma=1.0):
         super(OREPA, self).__init__()
         self.deploy = deploy
 
@@ -203,12 +192,6 @@ class OREPA(nn.Module):
                 'weight_orepa_avg_avg',
                 torch.ones(kernel_size,
                            kernel_size).mul(1.0 / kernel_size / kernel_size))
-            self.branch_counter += 1
-
-            self.weight_orepa_1x1 = nn.Parameter(
-                torch.Tensor(out_channels, int(in_channels / self.groups), 1,
-                             1))
-            init.kaiming_uniform_(self.weight_orepa_1x1, a=0.0)
             self.branch_counter += 1
 
             if internal_channels_1x1_3x3 is None:
@@ -252,9 +235,7 @@ class OREPA(nn.Module):
             init.constant_(self.vector[0, :], 0.25 * math.sqrt(init_hyper_gamma))  # origin
             init.constant_(self.vector[1, :], 0.25 * math.sqrt(init_hyper_gamma))  # avg
             init.constant_(self.vector[2, :], 0.5 * math.sqrt(init_hyper_gamma))  # 1x1_kxk
-            init.constant_(self.vector[3, :], 1.0 * math.sqrt(init_hyper_gamma))  # 1x1
 
-            self.weight_orepa_1x1.data = self.weight_orepa_1x1.mul(init_hyper_para)
             self.weight_orepa_origin.data = self.weight_orepa_origin.mul(init_hyper_para)
             self.weight_orepa_1x1_kxk_conv2.data = self.weight_orepa_1x1_kxk_conv2.mul(init_hyper_para)
             self.weight_orepa_avg_conv.data = self.weight_orepa_avg_conv.mul(init_hyper_para)
@@ -285,32 +266,10 @@ class OREPA(nn.Module):
             raise NotImplementedError
         weight_orepa_1x1_kxk_conv2 = self.weight_orepa_1x1_kxk_conv2
 
-        if self.groups > 1:
-            g = self.groups
-            t, ig = weight_orepa_1x1_kxk_conv1.size()
-            o, tg, h, w = weight_orepa_1x1_kxk_conv2.size()
-            weight_orepa_1x1_kxk_conv1 = weight_orepa_1x1_kxk_conv1.view(
-                g, int(t / g), ig)
-            weight_orepa_1x1_kxk_conv2 = weight_orepa_1x1_kxk_conv2.view(
-                g, int(o / g), tg, h, w)
-            weight_orepa_1x1_kxk = torch.einsum('gti,gothw->goihw',
-                                                weight_orepa_1x1_kxk_conv1,
-                                                weight_orepa_1x1_kxk_conv2).reshape(
-                o, ig, h, w)
-        else:
-            weight_orepa_1x1_kxk = torch.einsum('ti,othw->oihw',
-                                                weight_orepa_1x1_kxk_conv1,
-                                                weight_orepa_1x1_kxk_conv2)
         weight_orepa_1x1_kxk = torch.einsum('ti,othw->oihw',
                                     weight_orepa_1x1_kxk_conv1,
                                     weight_orepa_1x1_kxk_conv2)
         weight_orepa_1x1_kxk = torch.einsum('oihw,o->oihw', weight_orepa_1x1_kxk, self.vector[2, :])
-        weight_orepa_1x1 = 0
-        if hasattr(self, 'weight_orepa_1x1'):
-            weight_orepa_1x1 = transVI_multiscale(self.weight_orepa_1x1,
-                                                  self.kernel_size)
-            weight_orepa_1x1 = torch.einsum('oihw,o->oihw', weight_orepa_1x1,
-                                            self.vector[3, :])
 
         weight = weight_orepa_origin + weight_orepa_1x1_kxk + weight_orepa_avg
 
