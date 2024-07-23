@@ -1,6 +1,9 @@
 # VicsGaze
 VicsGaze: A Gaze Estimation Method Using Self-supervised Contrastive Learning
 
+# Start
+For model training, you need to change the dataset path in `config/train`.
+
 # Datasets
 The datasets in our paper are open access. You can download at the following link. Remember to cite the corresponding literatures. 
 1. [ETH-XGaze](https://ait.ethz.ch/xgaze?query=eth)
