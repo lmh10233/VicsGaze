@@ -2,6 +2,7 @@
 VicsGaze: A Gaze Estimation Method Using Self-supervised Contrastive Learning
 
 # Citation
+makedown
 @InProceedings{cheng2022gazetr,
   title={Gaze Estimation using Transformer},
   author={Yihua Cheng and Feng Lu},
