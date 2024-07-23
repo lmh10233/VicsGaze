@@ -2,7 +2,14 @@
 VicsGaze: A Gaze Estimation Method Using Self-supervised Contrastive Learning
 
 # Start
-For model training, you need to change the dataset path in `config/train`.
+For model training, you need to change the dataset path in `config/train`. Take training ETH-XGaze as an example, you can write code in terminal
+```
+python train/train_vic.py -s config/train/eth.yaml
+```
+For model testing, you need to change the dataset path in `config/test`. If you want to test model on `p00` in MPIIFaceGaze dataset, you can implement
+```
+python test/leave_linear_eval.py -s config/train/mpii.yaml -t config/test/mpii.yaml -p 0
+```
 
 # Datasets
 The datasets in our paper are open access. You can download at the following link. Remember to cite the corresponding literatures. 
