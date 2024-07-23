@@ -1,8 +1,3 @@
-""" Negative Cosine Similarity Loss Function """
-
-# Copyright (c) 2020. Lightly AG and its affiliates.
-# All Rights Reserved
-
 import torch
 from torch.nn.functional import cosine_similarity
 
