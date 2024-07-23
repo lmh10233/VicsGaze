@@ -1,8 +1,3 @@
-""" SimSiam Model """
-
-# Copyright (c) 2020. Lightly AG and its affiliates.
-# All Rights Reserved
-
 import warnings
 
 import torch
