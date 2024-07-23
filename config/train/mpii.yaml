@@ -27,7 +27,7 @@ train:
     save:
         metapath: "result"
         folder: mpii
-        model_name: trans6
+        model_name: vicsgaze
         step: 10
 
     data:
