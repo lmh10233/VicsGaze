@@ -6,11 +6,11 @@ For model training, you need to change the dataset path in `config/train`. Take 
 ```
 python train/train_vic.py -s config/train/eth.yaml
 ```
-For model testing, you need to change the dataset path in `config/test`. If you want to test model on `p00` in MPIIFaceGaze dataset, you can implement
+For model fine-tuning, you need to change the dataset path in `config/test`. If you want to test model on `p00` in MPIIFaceGaze dataset, you can implement
 ```
 python test/leave_linear_eval.py -s config/train/mpii.yaml -t config/test/mpii.yaml -p 0
 ```
-When testing on Gaze360, you can implement
+When fine-tuning on Gaze360, you can implement
 ```
 python test/linear_eval.py -s config/train/gaze360.yaml -t config/test/gaze360.yaml
 ```
