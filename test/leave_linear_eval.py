@@ -21,7 +21,7 @@ import online_resnet
 from vicsgaze import VicsGaze
 # from byol import BYOL
 
-def seed_torch(seed=3407):  # 114514, 3407
+def seed_torch(seed):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed) # 为了禁止hash随机化，使得实验可复现
     np.random.seed(seed)
@@ -34,8 +34,8 @@ def seed_torch(seed=3407):  # 114514, 3407
     
 def main(train, test):
     
-    seed_torch()
-    fine_tune = False
+    # seed_torch()
+    fine_tune = True
     # resnet = torchvision.models.resnet18()
     resnet = online_resnet.create_Res()
     backbone = nn.Sequential(*list(resnet.children())[:-1])
