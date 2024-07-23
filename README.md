@@ -10,6 +10,10 @@ For model testing, you need to change the dataset path in `config/test`. If you 
 ```
 python test/leave_linear_eval.py -s config/train/mpii.yaml -t config/test/mpii.yaml -p 0
 ```
+When testing on Gaze360, you can implement
+```
+python test/linear_eval.py -s config/train/gaze360.yaml -t config/test/gaze360.yaml
+```
 
 # Datasets
 The datasets in our paper are open access. You can download at the following link. Remember to cite the corresponding literatures. 
