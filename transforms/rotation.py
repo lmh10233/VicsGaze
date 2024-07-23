@@ -1,6 +1,3 @@
-# Copyright (c) 2020. Lightly AG and its affiliates.
-# All Rights Reserved
-
 from typing import Tuple, Union
 
 import numpy as np
