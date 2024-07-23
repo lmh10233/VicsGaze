@@ -1,8 +1,3 @@
-""" Momentum Encoder """
-
-# Copyright (c) 2020. Lightly AG and its affiliates.
-# All Rights Reserved
-
 import copy
 from typing import Iterable, Tuple
 
