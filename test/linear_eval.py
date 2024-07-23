@@ -22,7 +22,7 @@ from vicsgaze import VicsGaze
 import time
 
 
-def seed_torch(seed=3407):  # 114514, 3407
+def seed_torch(seed):
     random.seed(seed)
     os.environ['PYTHONHASHSEED'] = str(seed) # 为了禁止hash随机化，使得实验可复现
     np.random.seed(seed)
