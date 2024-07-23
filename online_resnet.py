@@ -5,7 +5,7 @@ from orepa.dbb_transforms import transI_fusebn
 from timm.models.layers import trunc_normal_, to_2tuple, DropPath, PatchEmbed
 import math
 import numpy as np
-from orepa.blocks import OREPA, OREPA_1x1
+from orepa.blocks import OREPA
 import torch
 import copy
 from einops import rearrange
