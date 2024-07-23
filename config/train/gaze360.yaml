@@ -13,7 +13,7 @@ train:
     save:
         metapath: "result"
         folder: gaze360
-        model_name: trans6
+        model_name: vicsgaze
         step: 10
 
     data:
