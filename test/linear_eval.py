@@ -16,8 +16,8 @@ import torchvision
 from loss import NegativeCosineSimilarity
 from warmup_scheduler import GradualWarmupScheduler
 import online_resnet
-from byol import BYOL
-from simsiam import SimSiam
+# from byol import BYOL
+# from simsiam import SimSiam
 from vicsgaze import VicsGaze
 import time
 
