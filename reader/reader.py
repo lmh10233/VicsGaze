@@ -8,8 +8,6 @@ from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 from torchvision import transforms
 from torchvision.transforms import ToPILImage
-from transforms.byol_transform import BYOLTransform, BYOLView1Transform, BYOLView2Transform
-# from transforms.simsiam_transform import SimSiamTransform
 from transforms.vics_transform import VICSTransform
 from torchvision import datasets
 from PIL import Image
