@@ -1,13 +1,13 @@
 import torch
 import torchvision
 # from simsiam import SimSiam
-from vicreg import VicReg
+from vicsgaze import VicReg
 import time
 import torch.nn as nn
 import online_resnet
 from models.Gaze_regressor import Gaze_regressor
 
-iterations = 500   # 重复计算的轮次
+iterations = 500  
 
 resnet = torchvision.models.resnet18()
 # resnet = online_resnet.create_Res()
@@ -26,12 +26,11 @@ model.to(device); regressor.to(device)
 random_input = torch.randn(1, 3, 224, 224).to(device)
 starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
 
-# GPU预热
 for _ in range(100):
     _ = model(random_input)
 
-# 测速
-times = torch.zeros(iterations)     # 存储每轮iteration的时间
+# test time
+times = torch.zeros(iterations)     
 with torch.no_grad():
     for iter in range(iterations):
         starter.record()
@@ -39,9 +38,8 @@ with torch.no_grad():
         x = x.flatten(start_dim=1)
         x = regressor(x)
         ender.record()
-        # 同步GPU时间
         torch.cuda.synchronize()
-        curr_time = starter.elapsed_time(ender) # 计算时间
+        curr_time = starter.elapsed_time(ender) # calculate time
         times[iter] = curr_time
         # print(curr_time)
 # with torch.no_grad():
