@@ -16,15 +16,14 @@ class Crop:
         if face_landmarks == []:
             return None
         else:
-            # 获取左眼和右眼的坐标
+            # coordinates of left and right eyes
             left_eye = np.array(face_landmarks[0]['left_eye'])
             right_eye = np.array(face_landmarks[0]['right_eye'])
 
-            # 获取左眼和右眼的矩形框
+            # rectangle boxes
             left_eye_box = (min(left_eye[:, 0]) - 10, min(left_eye[:, 1] - 10),
                             max(left_eye[:, 0]) + 10, max(left_eye[:, 1]) + 10)
 
-            # 计算右眼框的坐标
             right_eye_box = (min(right_eye[:, 0]) - 10, min(right_eye[:, 1] - 10),
                              max(right_eye[:, 0]) + 10, max(right_eye[:, 1]) + 10)
 
@@ -87,7 +86,7 @@ if __name__ == '__main__':
         
 #         if result.multi_face_landmarks:
 #             for face in result.multi_face_landmarks:
-#                 # 获取眼睛特定特征点
+#                 # eye landmarks
 #                 right_eye_landmark_ids = [362, 385, 387, 263, 373, 380]
 #                 left_eye_landmark_ids = [33, 160, 158, 133, 153, 144]
 #                 lx = []; ly =[]
