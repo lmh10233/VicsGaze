@@ -11,7 +11,7 @@ from transforms.solarize import RandomSolarization
 from transforms.utils import IMAGENET_NORMALIZE
 from transforms.Crop import Crop
 
-class VICRegTransform(MultiViewTransform):
+class VICSTransform(MultiViewTransform):
 
     def __init__(
         self,
@@ -34,7 +34,7 @@ class VICRegTransform(MultiViewTransform):
         rr_degrees: Union[None, float, Tuple[float, float]] = None,
         normalize: Union[None, Dict[str, List[float]]] = IMAGENET_NORMALIZE,
     ):
-        view_transform = VICRegViewTransform(
+        view_transform = VICSViewTransform(
             input_size=input_size,
             cj_prob=cj_prob,
             cj_strength=cj_strength,
@@ -57,7 +57,7 @@ class VICRegTransform(MultiViewTransform):
         super().__init__(transforms=[view_transform, view_transform])
 
 
-class VICRegViewTransform:
+class VICSViewTransform:
     def __init__(
         self,
         input_size: int = 224,
