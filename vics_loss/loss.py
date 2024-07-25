@@ -4,7 +4,7 @@ import torch.distributed as dist
 import torch.nn.functional as F
 from torch import Tensor
 
-from vic_loss.dist import gather
+from vics_loss.dist import gather
 from torch.nn.functional import cosine_similarity
 
 
@@ -19,7 +19,7 @@ class VicsLoss(torch.nn.Module):
         gather_distributed: bool = False,
         eps=0.0001,
     ):
-        super(VICRegLoss, self).__init__()
+        super(VicsLoss, self).__init__()
         if gather_distributed and not dist.is_available():
             raise ValueError(
                 "gather_distributed is True but torch.distributed is not available. "
