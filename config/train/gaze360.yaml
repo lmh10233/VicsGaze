@@ -17,8 +17,8 @@ train:
         step: 10
 
     data:
-        image: "/root/autodl-tmp/Gaze360-New/Image/all"
-        label: "/root/autodl-tmp/Gaze360-New/Label/all"
+        image: "/root/autodl-tmp/Gaze360-New/Image"
+        label: "/root/autodl-tmp/Gaze360-New/Label"
         header: True
         name: gaze360
         isFolder: True
