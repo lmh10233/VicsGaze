@@ -3,11 +3,11 @@ train:
 
     params:
         batch_size: 256
-        epoch: 6
+        epoch: 10
         lr: 0.1
         weight_decay: 0.0001
         decay: 0.5
-        decay_step: 3
+        decay_step: 5
         warmup: 0
     
     save:
